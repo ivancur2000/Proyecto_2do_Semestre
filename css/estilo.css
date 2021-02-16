@@ -1,0 +1,164 @@
+html {
+	min-height: 100%;
+	position: relative;
+}
+body {
+	margin: 0;
+	margin-bottom: 40px;
+	background: url(../img/fondos/La-Paz-Bolivia-city-mountains_1920x1200.jpg)no-repeat center center fixed;
+}
+#footer{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 40px;
+}
+#link{
+	padding-left: 30px;
+	color:#ffff;
+}
+#link:hover{
+	color: #FFB001;
+	font-size: 18px;
+}
+
+.item {
+	display: none;
+	padding: 20px;
+	animation: aparecer 1.2s forwards
+}
+
+.item:first-child {
+	display: flex;
+}
+
+.arrows {
+	margin-left: 15%;
+	margin-top: -4%;
+}
+
+.arrows div{
+	color: #111;
+	margin: 0 30px;
+	transition: all 0.12s;
+	font-size: 70px;
+}
+
+.arrows div:hover{
+	color: #555;
+	font-size: 80px;
+	margin-top: -8px;
+}
+
+img {
+	width: 400px
+}
+
+
+@keyframes aparecer {
+	0% {
+		opacity: 0.4
+	}
+	100% {
+		opacity: 1
+	}
+}
+#contenedor2{
+	padding: 2%;
+	margin: 0;
+	background: #333333;
+	width: 100%;
+	border-radius: 20px;
+	border: 3px solid white;
+}
+#letra{
+	color: #FFB001;
+}
+#caracteristicas{
+	padding:5px;
+	margin: 25px;
+	color: #fff;
+}
+#qr{
+	margin-left: 350px;
+}
+#lista_in{
+	margin-left: 250px;
+}
+#boton{
+	margin-left: 65%;
+}
+#contenedor{
+	padding: 3%;
+	width: 75%;
+	background: #fff;
+	border-radius: 5px;
+	border-bottom-right-radius: 20%;
+	border: 6px solid black;	
+}
+#navbar2{
+	border-radius: 20px;
+	color: #0000;
+	width: 80%;
+	left: 10%;
+}
+#tipo{
+	border: none;
+	background: #F8F9FA;
+	margin-left: 15px;
+}
+#navbar3{
+	width: 80%;
+	margin-left: 10%;
+	border-radius: 20px;
+	background: transparent;
+}
+#precio{
+	border-radius: 20px;
+	background: #FFB001;
+	width: auto;
+	font-size: 25px;
+	color: blanchedalmond;
+	text-align: center;
+	padding: 4px;
+}
+#mapa{
+	padding: 5%;
+}
+#mapa h3{
+	color: #ffff;
+}
+#maps{
+	width: 550px;
+	height: 550px;
+}
+#imagen{
+	width: 85px;
+	height: 85px; 
+	border-radius: 50%;
+}
+#contacto{
+	margin-top: 25px;
+}
+#grupo{
+	width: 100%;
+}
+#calculadora{
+	width: 550px;
+	margin-left: 25%;
+	background: #333;
+	padding: 15px;
+	border-radius: 10px;
+}
+#calculadora h3, label{
+	color: #ffff;
+}
+#caja{
+	border: 1px solid #ffff;
+	border-radius: 10px;
+	padding: 25px;
+	background-color: #333333;
+}
+
+
+
