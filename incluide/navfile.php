@@ -27,15 +27,15 @@
             </ul>
             <ul class="navbar-nav text-uppercase ml-auto">
             <?php
-            if(isset($_SESSION['nom_cli']))
+            if(isset($_SESSION['name']))
             { 
             ?>
                 <ul class="navbar-nav ">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle js-scroll-trigger" role="button" data-toggle="dropdown">
-                    <?php if(isset($_SESSION['nom_cli']) && isset($_SESSION['ape_cli']))
+                    <?php if(isset($_SESSION['name']) && isset($_SESSION['app']))
                     {
-                        echo $_SESSION['nom_cli']." ".$_SESSION['ape_cli']; 
+                        echo $_SESSION['name']." ".$_SESSION['app']; 
                     }
                     ?></a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">

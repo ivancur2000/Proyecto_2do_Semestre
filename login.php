@@ -10,7 +10,7 @@ if(!isset($_SESSION['contador']))
 //validacion si la sesion ya fue iniciada
 if(!empty($_SESSION['active']))
 {
-	if($_SESSION['usuario'] == 'empleado')
+	if($_SESSION['usuario'] == 'Administrador')
 	{
 		header('location: system/home.php');
 	}else
@@ -47,99 +47,55 @@ if(!empty($_SESSION['active']))
 					if(!empty($_POST))
 					{
 					//en mi caso yo utilizo esto por tengo dos tipos de usuarios, tu puedes quitar este if y else
-					if($_POST['nivel']=="u")//*** */
+					//inicio del metodo de logueo
+					//variables de logueo
+					$user = mysqli_real_escape_string($conn, $_POST['tb_us']);
+					$pass = mysqli_real_escape_string($conn, $_POST['tb_pass']);
+					//consulta a la base de datos para la validacion del logueo
+					$sql = mysqli_query($conn, "CALL login ('$user', '$pass')");
+					$resultado = mysqli_num_rows($sql);
+					if($resultado == 1)
 					{
-						//inicio del metodo de logueo
-						//variables de logueo
-						$user = mysqli_real_escape_string($conn, $_POST['tb_us']);
-						$pass = md5(mysqli_real_escape_string($conn, $_POST['tb_pass']));
-						//consulta a la base de datos para la validacion del logueo
-						$sql = mysqli_query($conn, "SELECT * FROM usuario WHERE login_us = '$user' AND pass_us = '$pass' AND est_us = '1'");
-						$resultado = mysqli_num_rows($sql);
-						if($resultado == 1)
-						{
-							//datos del usuario logueado	
-							$data = mysqli_fetch_array($sql);
-							$_SESSION['active'] = true;
-							$_SESSION['id'] = $data['id_us'];
-							$_SESSION['cargo'] = $data['id_cargo'];
-							$_SESSION['name'] = $data['nom_us'];
-							$_SESSION['app'] = $data['app_us'];
-							$_SESSION['apm'] = $data['apm_us'];
-							$_SESSION['img'] = $data['foto_us'];
-							$_SESSION['usuario'] = 'empleado'; 
-							//redireccion a la pagina principal de usuario
-							header('refresh:1; url= system/home.php');
-							$alert="BIENVENIDO: ".$data['nom_us']." ".$data['app_us'];;
-						}else
-						{
-							//contador de intentos
-							$_SESSION['contador']++;
-							$contador=$_SESSION['contador'];
-							$alert="Usuario o contraseña incorrectos,".'<br>'." por favor intentelo de nuevo";
-							if($contador == 3)
-							{
-								$alert = "Llego al limite de intentos";
-								session_destroy();
-								?>
-								<!--script del bloque de boton y temporizador-->
-								<script src="js/methods/bloc.js"></script>
-								<div id="contador" class = "tiempo"></div>
-								<script src="js/methods/temp.js"></script>
-								<?php
-								header('refresh:5; url=login.php');
-							}
-							?>
-							<?php
+						//datos del usuario logueado	
+						$data = mysqli_fetch_array($sql);
+						$_SESSION['active'] = true;
+						$_SESSION['id'] = $data['idUsuario'];
+						$_SESSION['cargo'] = $data['nombreCargo'];
+						$_SESSION['name'] = $data['nombreUsuario'];
+						$_SESSION['app'] = $data['appUsuario'];
+						$_SESSION['img'] = $data['fotoUsuario'];
+						//redireccion a la pagina principal de usuario
+						if($data['cargo'] == 'Administrador'){
+							header("refresh:1; url=system/home.php");
+						}else{
+							header("refresh:1; url= index.php");
 						}
-					}else//**** */
+						$alert="BIENVENIDO: ".$data['nombreUsuario']." ".$data['appUsuario']." ".$data['nombreCargo'];
+					}else
 					{
-						//esto es  lo mismo pero para otra tabla
-						//variables de logueo
-						$user = mysqli_real_escape_string($conn, $_POST['tb_us']);
-						$pass = md5(mysqli_real_escape_string($conn, $_POST['tb_pass']));
-						//consulta a la base de datos para la validacion del logueo
-						$sql = mysqli_query($conn, "SELECT * FROM cliente WHERE email_cli = '$user' AND pass_cli = '$pass' AND est_cli = '1'");
-						$resultado = mysqli_num_rows($sql);
-						if($resultado == 1)
+						//contador de intentos
+						$_SESSION['contador']++;
+						$contador=$_SESSION['contador'];
+						$alert="Correo o contraseña incorrectos,".'<br>'." por favor intentelo de nuevo";
+						if($contador == 3)
 						{
-							//datos del usuario logueado	
-							$data = mysqli_fetch_array($sql);
-							$_SESSION['active'] = true;
-							$_SESSION['id_cli'] = $data['id_cli'];
-							$_SESSION['nom_cli'] = $data['nom_cli'];
-							$_SESSION['ape_cli'] = $data['ape_cli'];
-							$_SESSION['usuario'] = 'cliente'; 
-							//redireccion a la pagina principal de usuario
-							header('refresh:1; url= index.php');
-							$alert="BIENVENIDO: ".$data['nom_cli']." ".$data['ape_cli'];
-						}else
-						{
-							//contador de intentos
-							$_SESSION['contador']++;
-							$contador=$_SESSION['contador'];
-							$alert="Usuario o contraseña incorrectos,".'<br>'." por favor intentelo de nuevo";
-							if($contador == 3)
-							{
-								$alert = "Llego al limite de intentos";
-								session_destroy();
-								?>
-								<script src="js/methods/bloc.js"></script>
-								<div id="contador" class = "tiempo"></div>
-								<script src="js/methods/temp.js"></script>
-								<?php
-								header('refresh:5; url=login.php');
-							}
+							$alert = "Llego al limite de intentos";
+							session_destroy();
 							?>
+							<!--script del bloque de boton y temporizador-->
+							<script src="js/methods/bloc.js"></script>
+							<div id="contador" class = "tiempo"></div>
+							<script src="js/methods/temp.js"></script>
 							<?php
+							header('refresh:5; url=login.php');
 						}
+						?>
+						<?php
 					}
 				}
 			}
 			//automatico
 			?>
-					<input type="radio" name="nivel" value="u" id="">Usuario
-					<input type="radio" name="nivel" value="c" id="" checked>Cliente <br>
 				</form>	
 			</div>
 		</div>
@@ -178,7 +134,7 @@ if(!empty($_SESSION['active']))
 	<script type="text/javascript">
 	$(document).ready(function()
       {
-          var mensaje = '<?php echo $alert; ?>'
+		var mensaje = '<?php echo $alert; ?>'
         if(mensaje !== ""){
          $("#mostrarmodal").modal("show");
          mensaje="";

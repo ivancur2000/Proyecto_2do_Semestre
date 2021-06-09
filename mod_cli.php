@@ -1,8 +1,8 @@
 <?php
 require_once 'resuorces/config/database.php';
 session_start(); 
-$id = $_SESSION['id_cli'];
-if(!isset($_SESSION['id_cli']))
+$id = $_SESSION['id'];
+if(!isset($_SESSION['id']))
 {
     header('location: index.php');
 }
@@ -13,16 +13,14 @@ if(isset($_POST['btn_mod']))
         $name = $_POST['tb_name'];
         $app = $_POST['tb_app'];
         $nacimiento = $_POST['dt_naci'];
-        $cel = $_POST['tb_cel1'];
-        $cel2 = $_POST['tb_cel2'];
+        $ciudad = $_POST['tb_ciudad'];
+        $pais = $_POST['tb_pais'];
         $email = $_POST['tb_email'];
-        $direc = $_POST['tb_direc'];
-        $nit = $_POST['tb_ci'];
-        $modificacion = "UPDATE cliente SET nom_cli = '$name', ape_cli = '$app', fech_naci = '$nacimiento', cel1_cli = '$cel', cel2_cli = '$cel2', email_cli = '$email', nit_cli = '$nit', direc_cli = '$direc' WHERE id_cli = '$id'";
+        $modificacion = "CALL updateUsers ('$id', '$name', '$app', '$nacimiento', '$pais', '$ciudad', '$email')";
         if(mysqli_query($conn, $modificacion))
         {
-            $_SESSION['nom_cli']=$name;
-            $_SESSION['ape_cli']=$app;
+            $_SESSION['name']=$name;
+            $_SESSION['app']=$app;
             $alert = "Modificacion Exitosa";
             header('refresh: 2; url=perfil.php');
         }else
@@ -36,7 +34,7 @@ if(isset($_POST['btn_pass']))
     if(!empty($_POST))
     {
         $newpass = $_POST['pass'];
-        $pass_mod = "UPDATE cliente SET pass_cli = '$newpass' WHERE id_cli = '$id'";
+        $pass_mod = "UPDATE usuarios SET contrasena = '$newpass' WHERE idUsuario = '$id'";
         if(mysqli_query($conn, $pass_mod))
         {
             $alert = "Contraseña Modificada con exito";
@@ -47,10 +45,10 @@ if(isset($_POST['btn_pass']))
         }
     }
 }
-$id = $_SESSION['id_cli'];
-$sql=mysqli_query($conn,"SELECT * FROM cliente WHERE id_cli = '$id'");
+$id = $_SESSION['id'];
+$sql=mysqli_query($conn,"SELECT * FROM usuarios WHERE idUsuario = '$id'");
 $fila=mysqli_fetch_array($sql);
-$password = $fila['pass_cli'];
+$password = $fila['contrasena'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -115,49 +113,37 @@ $password = $fila['pass_cli'];
                 <div class="form-group row">
                     <Label class="col-sm-2 col-form-label">Nombres:</Label>
                     <div class="col-sm-8">
-                        <input type="text" name="tb_name" id="texto" value="<?php echo $fila['nom_cli']; ?>">
+                        <input type="text" name="tb_name" id="texto" value="<?php echo $fila['nombreUsuario']; ?>">
                     </div>
                 </div>
                 <div class="form-group row">
                     <Label class="col-sm-2 col-form-label">Apellidos:</Label>
                     <div class="col-sm-8">
-                        <input type="text" name="tb_app" id="texto" value="<?php echo $fila['ape_cli']; ?>">
+                        <input type="text" name="tb_app" id="texto" value="<?php echo $fila['appUsuario']; ?>">
                     </div>
                 </div>
                 <div class="form-group row">
                     <Label class="col-sm-2 col-form-label">Fecha de nacimiento:</Label>
                     <div class="col-sm-8">
-                        <input type="text" name="dt_naci" id="texto" value="<?php echo $fila['fech_naci']; ?>">
+                        <input type="text" name="dt_naci" id="texto" value="<?php echo $fila['fechaNaci']; ?>">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <Label class="col-sm-2 col-form-label">Celular:</Label>
+                    <Label class="col-sm-2 col-form-label">Ciudad:</Label>
                     <div class="col-sm-8">
-                        <input type="text" name="tb_cel1" id="texto" value="<?php echo $fila['cel1_cli']; ?>">
+                        <input type="text" name="tb_ciudad" id="texto" value="<?php echo $fila['ciudad']; ?>">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <Label class="col-sm-2 col-form-label">Celular Secundario:</Label>
+                    <Label class="col-sm-2 col-form-label">Pais:</Label>
                     <div class="col-sm-8">
-                        <input type="text" name="tb_cel2" id="texto" value="<?php echo $fila['cel2_cli']; ?>">
+                        <input type="text" name="tb_pais" id="texto" value="<?php echo $fila['pais']; ?>">
                     </div>
                 </div>
                 <div class="form-group row">
                     <Label class="col-sm-2 col-form-label">Correo Electronico:</Label>
                     <div class="col-sm-8">
-                        <input type="text" name="tb_email" id="texto" value="<?php echo $fila['email_cli']; ?>">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <Label class="col-sm-2  col-form-label" >Direccion:</Label>
-                    <div class="col-sm-8">
-                        <input type="text" name="tb_direc" id="texto" value="<?php echo $fila['direc_cli']; ?>">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <Label class="col-sm-2 col-form-label">NIT:</Label>
-                    <div class="col-sm-8">
-                        <input type="text" name="tb_ci" id="texto" value="<?php echo $fila['nit_cli']; ?>">
+                        <input type="text" name="tb_email" id="texto" value="<?php echo $fila['correo']; ?>">
                     </div>
                 </div>
                 <a href="#password" data-toggle="modal" class="btn btn-success">Cambiar Contraseña</a>

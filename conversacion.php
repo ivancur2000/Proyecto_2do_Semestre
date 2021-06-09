@@ -1,12 +1,12 @@
 <?php
 require_once 'resuorces/config/database.php';
 session_start(); 
-if(!isset($_SESSION['id_cli']))
+if(!isset($_SESSION['id']))
 {
     header('location: index.php');
 }
-$id = $_SESSION['id_cli'];
-$sql=mysqli_query($conn,"SELECT u.id_us, u.nom_us, u.app_us, ch.mensaje_us FROM chat as ch INNER JOIN usuario as u ON u.id_us = ch.id_us WHERE ch.id_cli = '$id' AND ch.mensaje_us != '' GROUP BY ch.id_us ");
+$id = $_SESSION['id'];
+$sql=mysqli_query($conn,"call mostrarChatcli ('$id')");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -47,9 +47,9 @@ $sql=mysqli_query($conn,"SELECT u.id_us, u.nom_us, u.app_us, ch.mensaje_us FROM 
             <h1>Conversaciones</h1>
             <?php while($fila=mysqli_fetch_array($sql)){ ?>
             <div class="row">
-                <div class="col-3"><?php echo $fila['nom_us']." ".$fila['app_us']; ?>:</div>
-                <div class="col-4"><b><?php echo $fila['mensaje_us']; ?></b></div>
-                <a class="btn btn-primary col-3" href="chat/chat.php?id_us=<?php echo $fila['id_us']; ?>" target="_blank">Conversar</a>
+                <div class="col-3"><?php echo $fila['nombreUsuario']." ".$fila['appUsuario']; ?>:</div>
+                <div class="col-4"><b><?php echo $fila['mensajeUs']; ?></b></div>
+                <a class="btn btn-primary col-3" href="chat/chat.php?id_us=<?php echo $fila['idUsuario']; ?>" target="_blank">Conversar</a>
             </div>
             <?php } ?>
         </div>

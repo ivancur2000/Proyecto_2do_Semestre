@@ -1,7 +1,7 @@
 <?php 
 session_start();
 require_once '../resuorces/config/database.php';
-if(!isset($_SESSION['id_cli']))
+if(!isset($_SESSION['id']))
 {
 	header('location: ../index.php');
 }
@@ -13,7 +13,7 @@ if(isset($_GET['id_us']))
 	header('location: ../index.php');
 }
 $usuario=$_SESSION['usuario'];
-$cliente=$_SESSION['id_cli'];
+$cliente=$_SESSION['id'];
 
 $fecha= date('y-m-d-h-m');
 ?>
@@ -75,15 +75,15 @@ $fecha= date('y-m-d-h-m');
             </ul>
             <ul class="navbar-nav text-uppercase ml-auto">
             <?php
-            if(isset($_SESSION['nom_cli']))
+            if(isset($_SESSION['id']))
             { 
             ?>
                 <ul class="navbar-nav ">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle js-scroll-trigger" role="button" data-toggle="dropdown">
-                    <?php if(isset($_SESSION['nom_cli']) && isset($_SESSION['ape_cli']))
+                    <?php if(isset($_SESSION['name']) && isset($_SESSION['app']))
                     {
-                        echo $_SESSION['nom_cli']." ".$_SESSION['ape_cli']; 
+                        echo $_SESSION['name']." ".$_SESSION['app']; 
                     }
                     ?></a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -121,7 +121,7 @@ $fecha= date('y-m-d-h-m');
 			if (isset($_POST['enviar'])) {
 				$mensaje=$_POST['mensaje'];
 
-				$consulta = "INSERT INTO chat (id_us, id_cli, mensaje_cli, fecha_hora) VALUES ('$usuario', '$cliente', '$mensaje','$fecha')";
+				$consulta = "INSERT INTO chat (usuario, cliente, mensajeCli, fechaHora, estadoChat) VALUES ('$usuario', '$cliente', '$mensaje','$fecha', 1)";
 				if (mysqli_query($conn,$consulta)) {
 					echo "<embed loop='false' src='beep.mp3' hidden='true' autoplay='true'>";
 				}

@@ -1,12 +1,12 @@
 <?php
 require_once 'resuorces/config/database.php';
 session_start(); 
-if(!isset($_SESSION['id_cli']))
+if(!isset($_SESSION['id']))
 {
     header('location: index.php');
 }
-$id = $_SESSION['id_cli'];
-$sql=mysqli_query($conn,"SELECT * FROM cliente WHERE id_cli = '$id'");
+$id = $_SESSION['id'];
+$sql=mysqli_query($conn,"SELECT * FROM usuarios WHERE idUsuario = '$id'");
 $fila=mysqli_fetch_array($sql);
 ?>
 <!DOCTYPE html>
@@ -48,49 +48,37 @@ $fila=mysqli_fetch_array($sql);
             <div class="form-group row">
                 <Label class="col-sm-2 col-form-label">Nombres:</Label>
                 <div class="col-sm-8">
-                    <input type="text" id="texto" value="<?php echo $fila['nom_cli']; ?>"disabled>
+                    <input type="text" id="texto" value="<?php echo $fila['nombreUsuario']; ?>"disabled>
                 </div>
             </div>
             <div class="form-group row">
                 <Label class="col-sm-2 col-form-label">Apellidos</Label>
                 <div class="col-sm-8">
-                    <input type="text" id="texto" value="<?php echo $fila['ape_cli']; ?>"disabled>
+                    <input type="text" id="texto" value="<?php echo $fila['appUsuario']; ?>"disabled>
                 </div>
             </div>
             <div class="form-group row">
                 <Label class="col-sm-2 col-form-label">Fecha de nacimiento:</Label>
                 <div class="col-sm-8">
-                    <input type="text" id="texto" value="<?php echo $fila['fech_naci']; ?>"disabled>
+                    <input type="text" id="texto" value="<?php echo $fila['fechaNaci']; ?>"disabled>
                 </div>
             </div>
             <div class="form-group row">
-                <Label class="col-sm-2 col-form-label">Celular:</Label>
+                <Label class="col-sm-2 col-form-label">Ciudad:</Label>
                 <div class="col-sm-8">
-                    <input type="text" id="texto" value="<?php echo $fila['cel1_cli']; ?>"disabled>
+                    <input type="text" id="texto" value="<?php echo $fila['ciudad']; ?>"disabled>
                 </div>
             </div>
             <div class="form-group row">
-                <Label class="col-sm-2 col-form-label">Celular Secundario:</Label>
+                <Label class="col-sm-2 col-form-label">Pais:</Label>
                 <div class="col-sm-8">
-                    <input type="text" id="texto" value="<?php echo $fila['cel2_cli']; ?>"disabled>
+                    <input type="text" id="texto" value="<?php echo $fila['pais']; ?>"disabled>
                 </div>
             </div>
             <div class="form-group row">
                 <Label class="col-sm-2 col-form-label">Correo Electronico:</Label>
                 <div class="col-sm-8">
-                    <input type="text" id="texto" value="<?php echo $fila['email_cli']; ?>"disabled>
-                </div>
-            </div>
-            <div class="form-group row">
-                <Label class="col-sm-2 col-form-label">Direccion:</Label>
-                <div class="col-sm-8">
-                    <input type="text" id="texto" value="<?php echo $fila['direc_cli']; ?>"disabled>
-                </div>
-            </div>
-            <div class="form-group row">
-                <Label class="col-sm-2 col-form-label">NIT:</Label>
-                <div class="col-sm-8">
-                    <input type="text" id="texto" value="<?php echo $fila['nit_cli']; ?>"disabled>
+                    <input type="text" id="texto" value="<?php echo $fila['correo']; ?>"disabled>
                 </div>
             </div>
             <a class="btn btn-primary" href="mod_cli.php">Modificar Datos</a>

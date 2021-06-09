@@ -1,5 +1,3 @@
-
-   
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
@@ -27,15 +25,15 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#prox_proy">Próximos Proyectos</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#prox_ent">Proyectos Entregados</a></li>
                     <?php
-                    if(isset($_SESSION['nom_cli']))
+                    if(isset($_SESSION['id']))
                     { 
                     ?>
                       <ul class="navbar-nav ">
                         <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle js-scroll-trigger" role="button" data-toggle="dropdown">
-                            <?php if(isset($_SESSION['nom_cli']) && isset($_SESSION['ape_cli']))
+                            <?php if(isset($_SESSION['name']) && isset($_SESSION['app']))
                             {
-                              echo $_SESSION['nom_cli']." ".$_SESSION['ape_cli']; 
+                              echo $_SESSION['name']." ".$_SESSION['app']; 
                             }
                           ?></a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">

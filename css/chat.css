@@ -6,19 +6,15 @@
     width: 450px;
     margin-bottom: 5px;
 }
-#mensaje{
-    color: black;
-    margin-right: 40px;
-}
-#usuario{
+.user{
     color: #C51C11;
     margin-right: 15px;
 }
-#cliente{
+.cli{
     color: #088C00;
     margin-right: 15px;
 }
 #hora{
+    margin-right: 20px;
     color: #0037B9;
-   
 }

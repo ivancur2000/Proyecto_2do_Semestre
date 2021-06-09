@@ -76,7 +76,7 @@ $cargo = $_SESSION['cargo'];
         <img src="../../img/user_img/<?php if(isset($_SESSION['img'])){ echo $_SESSION['img']; } ?>" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block"><?php if(isset($_SESSION['id'])){ echo $_SESSION['name']." ".$_SESSION['app']." ".$_SESSION['apm']; }else{ echo "Ususario"; } ?></a>
+        <a href="#" class="d-block"><?php if(isset($_SESSION['id'])){ echo $_SESSION['name']." ".$_SESSION['app']; }else{ echo "Usuario"; } ?></a>
       </div>
     </div>
     <!-- Sidebar Menu -->
@@ -85,7 +85,6 @@ $cargo = $_SESSION['cargo'];
         <!-- Add icons to the links using the .nav-icon class
               with font-awesome or any other icon font library -->
               <!--Usuarios-->
-        <?php if($cargo == 11){ ?>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link ">
             <i class="nav-icon fas fa-user-alt"></i>
@@ -154,9 +153,6 @@ $cargo = $_SESSION['cargo'];
             </li>
           </ul>
         </li>
-        <?php }
-        if($cargo == 10 || $cargo == 11 || $cargo == 12){ 
-        ?>
           <!--Clientes -->
         <li class="nav-item has-treeview ">
           <a href="#" class="nav-link ">
@@ -173,14 +169,12 @@ $cargo = $_SESSION['cargo'];
                 <p>Ver Lista de Clientes </p>
               </a>
             </li>
-            <?php if($cargo == 11 || $cargo == 10){ ?>
             <li class="nav-item">
               <a href="../cliente/habilitar_cli.php" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Ver Clientes deshabilitados</p>
               </a>
             </li>
-            <?php } ?>
             <li class="nav-item">
               <a href="../cliente/registro_cli.php" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -189,9 +183,6 @@ $cargo = $_SESSION['cargo'];
             </li>
           </ul>
         </li>
-          <?php } 
-          if($cargo == 11 || $cargo ==13 || $cargo == 10){
-          ?>
         <!--Edificio -->
         <li class="nav-item has-treeview ">
           <a href="#" class="nav-link">
@@ -234,9 +225,6 @@ $cargo = $_SESSION['cargo'];
             </li>
           </ul>
         </li>
-            <?php } 
-            if($cargo == 11 || $cargo ==12 || $cargo==13){
-            ?>
           <!--Inmuebles -->
         <li class="nav-item has-treeview ">
           <a href="#" class="nav-link ">
@@ -277,7 +265,6 @@ $cargo = $_SESSION['cargo'];
                 <p>Registrar Inmuebles</p>
               </a>
             </li>
-            <?php if($cargo == 11 || $cargo == 13){ ?>
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -340,12 +327,8 @@ $cargo = $_SESSION['cargo'];
                 </li>
               </ul>   
             </li>
-            <?php } ?>
           </ul>
         </li>
-            <?php }
-            if($cargo == 10 || $cargo == 11 || $cargo = 12){
-            ?>
         <!-- ventas -->
         <li class="nav-item has-treeview ">
           <a href="#" class="nav-link ">
@@ -409,7 +392,6 @@ $cargo = $_SESSION['cargo'];
                 </li>
               </ul>   
             </li>
-            <?php if($cargo == 10 || $cargo == 11){ ?>
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -441,12 +423,8 @@ $cargo = $_SESSION['cargo'];
                 </li>
               </ul>   
             </li>
-            <?php } ?>
           </ul>
         </li>
-        <?php } 
-        if($cargo == 10 || $cargo == 11){
-        ?>
         <!-- reportes -->
         <li class="nav-item has-treeview ">
           <a href="#" class="nav-link ">
@@ -471,7 +449,6 @@ $cargo = $_SESSION['cargo'];
             </li>
           </ul>
         </li>
-        <?php } ?>
         <li class="nav-item">
           <a href="../../resuorces/config/desloguear.php" class="nav-link">
             <!-- <i class="nav-icon fas fa-calendar-alt"></i> -->
