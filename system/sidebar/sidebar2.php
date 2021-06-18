@@ -5,10 +5,10 @@
   <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      Todo sobre Departamentos
+      Todo sobre Departamentos de Bolivia
     </div>
     <!-- Default to the left -->
-    <strong>Derechos de Autor &copy; 2020 Yolita.SRL.</strong>Todos los derechos reservados
+    <strong>Derechos de Autor &copy; 2021 pAgina Homo.SRL.</strong>Todos los derechos reservados
   </footer>
 </div>
 <!-- ./wrapper -->

@@ -9,18 +9,20 @@ if(!isset($_SESSION['id']))
 	header('location: ../../index.php');
 }
 // validacion del metodo get
-if(isset($_GET['id_cli']))
+if(isset($_GET['idCli']))
 {
-	$_SESSION['cliente'] = $_GET['id_cli'];
+	$_SESSION['cliente'] = $_GET['idCli'];
 }else
 {
-	header('location: ../../index.php');
+	// header('location: ../../index.php');
 }
 //almacenamiento de las variables del chat
 $usuario = $_SESSION['id'];
 $cliente = $_SESSION['cliente'];
 
-$fecha= date('y-m-d-h-m-s');
+date_default_timezone_set('America/La_Paz');
+$fecha= date('Y-m-d H:i:s');
+
 ?> 
 <!DOCTYPE html>
 <html lang="es">
@@ -77,7 +79,7 @@ $fecha= date('y-m-d-h-m-s');
 			if (isset($_POST['enviar'])) {
 				$mensaje=$_POST['mensaje'];
 
-				$consulta = "INSERT INTO chat (id_us, id_cli, mensaje_us, fecha_hora) VALUES ('$usuario', '$cliente', '$mensaje','$fecha')";
+				$consulta = "INSERT INTO chat (usuario, cliente, mensajeUs, fechaHora, estadoChat) VALUES ('$usuario', '$cliente', '$mensaje','$fecha', 1)";
 				if (mysqli_query($conn,$consulta)) {
 					echo "<embed loop='false' src='beep.mp3' hidden='true' autoplay='true'>";
 				}

@@ -10,7 +10,7 @@ if(!isset($_SESSION['contador']))
 //validacion si la sesion ya fue iniciada
 if(!empty($_SESSION['active']))
 {
-	if($_SESSION['usuario'] == 'Administrador')
+	if($_SESSION['idCargo'] == 1)
 	{
 		header('location: system/home.php');
 	}else
@@ -61,11 +61,12 @@ if(!empty($_SESSION['active']))
 						$_SESSION['active'] = true;
 						$_SESSION['id'] = $data['idUsuario'];
 						$_SESSION['cargo'] = $data['nombreCargo'];
+						$_SESSION['idCargo'] = $data['cargo'];
 						$_SESSION['name'] = $data['nombreUsuario'];
 						$_SESSION['app'] = $data['appUsuario'];
 						$_SESSION['img'] = $data['fotoUsuario'];
 						//redireccion a la pagina principal de usuario
-						if($data['cargo'] == 'Administrador'){
+						if($_SESSION['idCargo'] == 1){
 							header("refresh:1; url=system/home.php");
 						}else{
 							header("refresh:1; url= index.php");

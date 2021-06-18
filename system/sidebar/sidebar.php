@@ -33,29 +33,28 @@ $cargo = $_SESSION['cargo'];
   <ul class="navbar-nav ml-auto ">
     <!-- Messages Dropdown Menu -->
     <li class="nav-item dropdown">
-      <a class="nav-link" data-toggle="dropdown" href="#">
-        <i class="far fa-comments"></i>
-      </a>
+		<a class="nav-link" data-toggle="dropdown" href="#">
+			<i class="far fa-comments"></i>
+		</a>
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-      <?php  $mensajes = mysqli_query($conn,"SELECT ch.id_cli, ch.mensaje_cli, c.nom_cli,c.ape_cli FROM chat as ch INNER JOIN cliente as c ON c.id_cli = ch.id_cli WHERE ch.id_us = '$id_usuario' GROUP BY ch.id_cli");
+      <?php  $mensajes = mysqli_query($conn,"CALL mostrarChatUser(".$_SESSION['id'].")");
       while($data_mensaje = mysqli_fetch_array($mensajes)){
       ?>
-        <a href="../chat/chat.php?id_cli=<?php echo $data_mensaje['id_cli'];?>" class="dropdown-item">
+        <a href="chat/chat.php?idCli=<?php echo $data_mensaje['idUsuario'];?>" class="dropdown-item">
           <!-- Message Start -->
           <div class="media">
             <div class="media-body">
               <h3 class="dropdown-item-title">
-                <?php echo $data_mensaje['nom_cli']." ".$data_mensaje['ape_cli']; ?>
+                <?php echo $data_mensaje['mensajeCli']; ?>
                 <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
               </h3>
-              <p class="text-sm"><?php echo $data_mensaje['mensaje_cli']; ?></p>
+              <p class="text-sm"><?php echo $data_mensaje['mensajeCli']; ?></p>
             </div>
           </div>
           <!-- Message End -->
         </a>
         <?php } ?>
-      </div>
-    </li>
+		</li>
   </ul>
 </nav>
 <!-- /.navbar -->
@@ -150,302 +149,6 @@ $cargo = $_SESSION['cargo'];
                   </a>
                 </li>
               </ul>   
-            </li>
-          </ul>
-        </li>
-          <!--Clientes -->
-        <li class="nav-item has-treeview ">
-          <a href="#" class="nav-link ">
-            <i class="nav-icon fas fa-book-reader"></i>
-            <p>
-              Clientes
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="../cliente/lista_cli.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Ver Lista de Clientes </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../cliente/habilitar_cli.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Ver Clientes deshabilitados</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../cliente/registro_cli.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Registrar nuevos Clientes</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <!--Edificio -->
-        <li class="nav-item has-treeview ">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-building"></i>
-            <p>
-              Edificios
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="../edificio/lista_edi.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Edificios disponibles</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../edificio/const_edi.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Edificios en construccion </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../edificio/fin_edi.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Edificios vendidos</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../edificio/habilitar_edi.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Edificios deshabilitados</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../edificio/registro_edi.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Registrar Nuevos Edificios</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-          <!--Inmuebles -->
-        <li class="nav-item has-treeview ">
-          <a href="#" class="nav-link ">
-            <i class="nav-icon fas fa-house-user"></i>
-            <p>
-              Inmuebles
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="../inmueble/lista_inmu.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Inmiebles disponibles </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../inmueble/hab_inmu.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Inmuebles deshabilitados</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../inmueble/cont_inmu.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Inmuebles en construccion</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../inmueble/fin_inmu.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Inmuebles vendidos</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../inmueble/registro_inmu.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Registrar Inmuebles</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Tamaños</p>
-                <i class="right fas fa-angle-left"></i>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="../tamano/tam_lista.php" class="nav-link">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>Lista de Tamaños</p>
-                  </a>
-                </li>
-                <li class="nav-item has-treeview">
-                  <a href="../tamano/tam_alta.php" class="nav-link">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>
-                      Registrar nuevos Tamaños 
-                    </p>
-                  </a>
-                </li>
-                <li class="nav-item has-treeview">
-                  <a href="../tamano/tam_hab.php" class="nav-link">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>
-                      Tamaños Deshabilitados 
-                    </p>
-                  </a>
-                </li>
-              </ul>   
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Tipos de inmueble</p>
-                <i class="right fas fa-angle-left"></i>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="../tipo_in/tipo_inmu_lista.php" class="nav-link">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>Lista de Tipos</p>
-                  </a>
-                </li>
-                <li class="nav-item has-treeview">
-                  <a href="../tipo_in/tipo_inmu_alta.php" class="nav-link">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>
-                      Registrar nuevos Tipos 
-                    </p>
-                  </a>
-                </li>
-                <li class="nav-item has-treeview">
-                  <a href="../tipo_in/tipo_inmu_hab.php" class="nav-link">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>
-                      Tipos Deshabilitados 
-                    </p>
-                  </a>
-                </li>
-              </ul>   
-            </li>
-          </ul>
-        </li>
-        <!-- ventas -->
-        <li class="nav-item has-treeview ">
-          <a href="#" class="nav-link ">
-            <i class="nav-icon fas fa-cash-register"></i>
-            <p>
-              Ventas
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="../ventas/habilitar_venta.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Realizar Ventas</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../ventas/lista_venta_hab.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Ventas Activas</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../ventas/ventas_des.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Ventas Deshabilitadas</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../ventas/lista_venta_fin.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Ventas Finalizadas</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../ventas/lista_reserva.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Reservas</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Cuotas</p>
-                <i class="right fas fa-angle-left"></i>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="../ventas/lista_cuota.php" class="nav-link">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>Lista de cuotas</p>
-                  </a>
-                </li>
-                <li class="nav-item has-treeview">
-                  <a href="../ventas/lista_cuota_des.php" class="nav-link">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>
-                      Cuotas deshabilitas
-                    </p>
-                  </a>
-                </li>
-              </ul>   
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Planes de pago</p>
-                <i class="right fas fa-angle-left"></i>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="../plan_pago/lista_plan.php" class="nav-link">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>Lista de Planes</p>
-                  </a>
-                </li>
-                <li class="nav-item has-treeview">
-                  <a href="../plan_pago/hab_plan.php" class="nav-link">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>
-                      Lista de planes Deshabilitados 
-                    </p>
-                  </a>
-                </li>
-                <li class="nav-item has-treeview">
-                  <a href="../plan_pago/registro_plan.php" class="nav-link">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>
-                      Registrar Planes
-                    </p>
-                  </a>
-                </li>
-              </ul>   
-            </li>
-          </ul>
-        </li>
-        <!-- reportes -->
-        <li class="nav-item has-treeview ">
-          <a href="#" class="nav-link ">
-            <i class="nav-icon fas fa-chart-line"></i>
-            <p>
-              Reportes estadisticos
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="../reportes/reporte_ventas.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Reportes ventas</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../plan_pago/hab_plan.php" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Reportes usuarios</p>
-              </a>
             </li>
           </ul>
         </li>

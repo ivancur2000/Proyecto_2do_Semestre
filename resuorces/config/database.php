@@ -2,7 +2,7 @@
 //conexion a la base de datos
 $server="localhost";
 $username="root";
-$password="";
+$password="hola123";
 $database="turismo";
 
 	$conn=@mysqli_connect($server,$username,$password,$database);

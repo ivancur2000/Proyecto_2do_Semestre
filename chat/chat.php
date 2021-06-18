@@ -15,7 +15,8 @@ if(isset($_GET['id_us']))
 $usuario=$_SESSION['usuario'];
 $cliente=$_SESSION['id'];
 
-$fecha= date('y-m-d-h-m');
+date_default_timezone_set('America/La_Paz');
+$fecha= date('Y-m-d H:i:s');
 ?>
 <!DOCTYPE html>
 <html lang="es">
