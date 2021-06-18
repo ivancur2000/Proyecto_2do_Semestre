@@ -78,10 +78,11 @@ $fecha= date('Y-m-d H:i:s');
 		<?php
 			if (isset($_POST['enviar'])) {
 				$mensaje=$_POST['mensaje'];
-
 				$consulta = "INSERT INTO chat (usuario, cliente, mensajeUs, fechaHora, estadoChat) VALUES ('$usuario', '$cliente', '$mensaje','$fecha', 1)";
 				if (mysqli_query($conn,$consulta)) {
 					echo "<embed loop='false' src='beep.mp3' hidden='true' autoplay='true'>";
+				}else{
+					echo mysqli_error($conn);
 				}
 			}
 

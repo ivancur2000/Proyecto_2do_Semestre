@@ -37,7 +37,7 @@ $cargo = $_SESSION['cargo'];
 			<i class="far fa-comments"></i>
 		</a>
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-      <?php  $mensajes = mysqli_query($conn,"CALL mostrarChatUser(".$_SESSION['id'].")");
+      <?php // $mensajes = mysqli_query($conn,"CALL mostrarChatUser(".$_SESSION['id'].")");
       while($data_mensaje = mysqli_fetch_array($mensajes)){
       ?>
         <a href="chat/chat.php?idCli=<?php echo $data_mensaje['idUsuario'];?>" class="dropdown-item">
