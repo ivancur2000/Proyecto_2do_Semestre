@@ -3,37 +3,36 @@
 if(isset($_POST['btn_registrar'])){
 	if(!empty($_POST))
 	{
-		//requperacion de los dato obtenidos mediante el POST
+		//recuperacion de los datos obtenidos mediante el POST
 		$validador=0;
 		//validacion de duplicidad de usuario
-		$nombre=$_POST['tb_name'];
-		$app=$_POST['tb_app'];
-		$email=$_POST['tb_email'];
-		$ci=$_POST['tb_ci'];
-		$naci=$_POST['dt_naci'];
-		$direccion=$_POST['tb_dir'];
-		$celular=$_POST['tb_cel'];
-		$celular2=$_POST['tb_cel2'];
-		$pass = md5($_POST['tb_pass']);
-		$consulta= @mysqli_query($conn,"SELECT * FROM cliente WHERE email_cli LIKE '$email' AND est_cli = '1'");
+		$nombreUsuario=$_POST['nombreUsuario'];
+		$appUsuario=$_POST['appUsuario'];
+		$fechaNaci=$_POST['fechaNaci'];
+		$pais=$_POST['pais'];
+		$correo=$_POST['correo'];
+		$contrasena= md5($_POST['contrasena']);
+		$ciudad=$_POST['ciudad'];
+		$consulta= @mysqli_query($conn,"SELECT * FROM usuarios WHERE correo LIKE '$correo' AND estadoUsuario = '1'");
 		$resultado= mysqli_num_rows($consulta);
 		if($resultado==0)
 		{	
 			//alta de la tabla		
-			$sql = "INSERT INTO cliente (nom_cli, ape_cli, fech_naci, cel1_cli, cel2_cli, email_cli, nit_cli, direc_cli, pass_cli,est_cli) VALUES('$nombre', '$app', '$naci', '$celular', '$celular2', '$email', '$ci', '$direccion', '$pass','1')";
+			$sql = "INSERT INTO usuarios (nombreUsuario, appUsuario, cargo, fechaNaci, pais, correo, contrasena, ciudad, estadoUsuario) VALUES('$nombreUsuario', '$appUsuario', '2','$fechaNaci', '$pais', '$correo', '$contrasena', '$ciudad','1')";
 			if(mysqli_query($conn,$sql))
 			{
 				$last_id = mysqli_insert_id($conn);
-				$query = mysqli_query($conn, "SELECT * FROM cliente WHERE id_cli = '$last_id'");
+				$query = mysqli_query($conn, "SELECT * FROM usuarios WHERE idUsuario = '$last_id'");
 				$data=mysqli_fetch_array($query);
 				$_SESSION['active'] = true;
-				$_SESSION['id_cli'] = $data['id_cli'];
-				$_SESSION['nom_cli'] = $data['nom_cli'];
-				$_SESSION['ape_cli'] = $data['ape_cli'];
+				$_SESSION['id'] = $data['idUsuario'];
+				$_SESSION['cargo'] = $data['nombreCargo'];
+				$_SESSION['name'] = $data['nombreUsuario'];
+				$_SESSION['app'] = $data['appUsuario'];
 				$alert="Sus datos han sido registrados exitosamente";
 			}else
 			{
-				$alert="Ocurrio un error inesperado, vuelva a intentar mas tarde por favor";
+				$alert="Ocurrio un error inesperado, vuelva a intentar más tarde por favor";
 			} 
 		}
 		else 
@@ -55,8 +54,8 @@ if(isset($_POST['btn_registrar'])){
 	<script language="JavaScript">
 	function validar_clave ()
 	{
-		var pass1 = document.getElementById('pass').value;
-		var pass2 = document.getElementById('cpass').value;
+		var pass1 = document.getElementById('contrasena').value;
+		var pass2 = document.getElementById('ccontrasena').value;
 		if (pass1 != pass2) {
 			$("#validador_pass").html("<div><b> Las contraseñas deben coincidir <b></div>");
 			return false;
@@ -91,62 +90,52 @@ if(isset($_POST['btn_registrar'])){
 						<div class="card-body">
 							<!--Nombres-->
 							<div class="form-group">
-								<label for="Nombres">Nombres*:</label>
-								<input type="text"  onkeypress="return validar(event)" id="name" name="tb_name"  class="form-control" placeholder="Nombres">	
+								<label for="Nombres">Nombres:</label>
+								<input type="text"  onkeypress="return validar(event)" id="nombreUsuario" name="nombreUsuario"  class="form-control" placeholder="Nombres">	
 							</div>
 							<!--apellidos-->
 							<div class="form-group">
-								<label for="Apellidos">Apellidos*:</label>
-								<input type="text"  onkeypress="return validar(event)" id="app" name="tb_app" class="form-control" placeholder="Apellidos">
+								<label for="Apellidos">Apellidos:</label>
+								<input type="text"  onkeypress="return validar(event)" id="appUsuario" name="appUsuario" class="form-control" placeholder="Apellidos">
 							</div>
 							<!--correo-->
 							<div class="form-group">
-								<label for="Email">Correo Electronico*:</label>
-								<input type="email" id="email" name="tb_email" class="form-control" id="Email" placeholder="Email">
+								<label for="Ciudad">Ciudad:</label>
+								<input type="text" id="ciudad" name="ciudad" class="form-control" placeholder="Ciudad">
 							</div>
 							<!--ci-->
 							<div class="form-group">
-								<label for="NIT">NIT*:</label>
-								<input type="text" id="nit" name="tb_ci" class="form-control" placeholder="NIT">
+								<label for="pais">País:</label>
+								<input type="text" id="pais" name="pais" class="form-control" placeholder="País">
 							</div>
 							<!--fecha de nacimento-->
 							<div class="form-group">
-								<label for="fecha">Fecha de nacimiento*:</label>
-								<input type="date" id="fecha" name="dt_naci" class="form-control">
+								<label for="fecha">Fecha de Nacimiento:</label>
+								<input type="date" id="fechaNaci" name="fechaNaci" class="form-control">
 							</div>
 							<!--celular-->
 							<div class="form-group">
-								<label for="Celular">Celular*:</label>
-								<input type="number" onkeypress="return soloNumeros(event)" id="cel" name="tb_cel" class="form-control" placeholder="Celular">
+								<label for="Celular">Correo Electrónico:</label>
+								<input type="text" id="correo" name="correo" class="form-control" placeholder="Correo Electrónico">
 								</div>
-							<!--celular segundario-->
-							<div class="form-group">
-								<label for="Celular sec.">Celular secundario:</label>
-								<input type="number" onkeypress="return soloNumeros(event)" id="cel2" name="tb_cel2" class="form-control" placeholder="Celular sec.">
-							</div>
-							<!--direccion-->
-							<div class="form-group">
-								<label for="Direccion">Direccion*:</label>
-								<input type="text" id="dir" name="tb_dir" id="" class="form-control" placeholder="Direccion">
-							</div>
 							<!--Contrasena-->
 							<div class="form-group">
-								<label for="Password">Contraseña:</label>
-								<input type="password" id="pass" name="tb_pass" class="form-control" id="Password" placeholder="Contraseña">
+								<label for="contrasena">Contraseña:</label>
+								<input type="password" id="pass" name="contrasena" class="form-control" id="contrasena" placeholder="Contraseña">
 							</div>	
 							<span id="mensaje"></span>
 							<div class="form-group">
-								<label for="tb_cpass">Confirmar contraseña:</label>
-								<input type="password" id="cpass" name="tb_confirm" id="Cpassword" class="form-control" placeholder="Contraseña">
+								<label for="ccontrasena">Confirmar contraseña:</label>
+								<input type="password" id="ccontrasena" name="ccontrasena" id="ccontrasena" class="form-control" placeholder="Contraseña">
 							</div>
 							<div id="validador_pass"style="color: #DC3545;" ></div>
 							<small class="form-text text-muted">
 								<ul>
-									<li id = "mayus">3 Mayusculas</li>
-									<li id = "special">3 Caracteres especiales</li>
-									<li id = "numbers">Digitos</li>
-									<li id = "lower">Minusculas</li>
-									<li id = "len">Minimo 8 caracteres</li>
+									<li id = "mayus">3 Mayúsculas</li>
+									<li id = "special">3 Carácteres especiales</li>
+									<li id = "numbers">Dígitos</li>
+									<li id = "lower">Minúsculas</li>
+									<li id = "len">Mínimo 8 carácteres</li>
 								</ul>
 							</small>
 						</div>
@@ -164,7 +153,7 @@ if(isset($_POST['btn_registrar'])){
     </div>
   </div>
 </div>
-<!-- validadr de passords -->
+<!-- validadr de passwords -->
 <script src="js/methods/password.js"></script>
 <!-- validate jquery y proteccion de los campos -->
 <script src="js/methods/validar.js"></script>	

@@ -28,10 +28,10 @@ $sql=mysqli_query($conn,"call mostrarChatcli ('$id')");
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="list-group list-group-flush">
         <a href="perfil.php" class="list-group-item list-group-item-action bg-light">Perfil</a>
-        <a href="lista_deseados.php" class="list-group-item list-group-item-action bg-light">Lista de deseados</a>
-        <a href="compras.php" class="list-group-item list-group-item-action bg-light">Ventas</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Coversaciones</a>
-        <a href="recibo_lista.php" class="list-group-item list-group-item-action bg-light">Recibos</a>
+        <a href="lista_deseados.php" class="list-group-item list-group-item-action bg-light">Lista de Clientes</a>
+        <a href="compras.php" class="list-group-item list-group-item-action bg-light">Reportes Estadísticos</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Conversaciones</a>
+        <a href="recibo_lista.php" class="list-group-item list-group-item-action bg-light">Departamentos de Bolivia</a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -59,11 +59,10 @@ $sql=mysqli_query($conn,"call mostrarChatcli ('$id')");
 <footer class="footer py-4 fixed-botom" id="footer2">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-4 text-lg-left" >Derechos de autor © Yolita.SRL 2020</div>
+            <div class="col-lg-4 text-lg-left" >Derechos de autor © Manuel Jimenez</div>
             <div class="col-lg-4 my-3 my-lg-0">
                 <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
             </div>
-            <div class="col-lg-4 text-lg-right"><a class="mr-3" href="#!">Privacy Policy</a><a href="#!">Terms of Use</a></div>
         </div>
     </div>
 </footer>

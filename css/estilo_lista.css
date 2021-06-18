@@ -1,0 +1,25 @@
+/*estilos lista de clientes*/
+table{
+    border-collapse: collapse;
+    font-size: 11pt;
+    font-family: arial;
+    width: 100%;
+}
+table th{
+    text-align: left;
+    padding: 10px;
+    background: #3d7ba8;
+    color: #fff;
+}
+table tr:nth-child(odd){
+    background: #DCDCDC;
+}
+table td{
+    padding: 10px;
+}
+.link_edit{
+    color: #0ca4ce;
+}
+.link_delete{
+    color: #f26b6b;
+}

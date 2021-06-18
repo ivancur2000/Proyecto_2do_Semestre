@@ -17,13 +17,13 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">Yolita.SRL</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fas fa-bars ml-1"></i></button>
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">TURISBO</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fas fa-bars ml-1"></i></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ml-auto">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#misionVision">Misión Visión</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#historia">Quiénes somos</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#prox_proy">Próximos Proyectos</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#prox_ent">Proyectos Entregados</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#MisionVision">Misión Visión</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Destinos">Destinos Turísticos</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Hoteles">Hoteles</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Gastronomía">Gastronomía</a></li>
                     <?php
                     if(isset($_SESSION['id']))
                     { 
@@ -40,7 +40,7 @@
                             <a class="dropdown-item" href="perfil.php">Ver Perfil</a>
                             <div class="dropdown-divider"></div>
                             
-                            <a class="dropdown-item" href="resuorces/config/desloguear.php">Cerrar Secion</a>
+                            <a class="dropdown-item" href="resuorces/config/desloguear.php">Cerrar Sesion</a>
                             </li>
                       </ul>
                       
@@ -58,12 +58,12 @@
     <!-- Masthead-->
     <header class="masthead">
       <div class="container">
-          <div class="masthead-subheading">Todo sobre inmuebles</div>
+          <div class="masthead-subheading">Todo sobre el Turismo</div>
           <form action="busqueda.php" method="POST" onSubmit="return validarForm(this)">
             <div class="masthead-subheading text-uppercase">
                 <!-- Search form -->
                 <div class="md-form mt-5">
-                  <input class="form-control" name="busqueda" type="text" placeholder="Zona, tipo de inmueble, edifico" aria-label="Search">
+                  <input class="form-control" name="busqueda" type="text" placeholder="departamentos, lugares turisticos, hoteles, comidas" aria-label="Search">
                 </div>
             </div>
             <button type="submit" name="tb_buscar" class="btn btn-primary btn-xl text-uppercase js-scroll-trigger">Buscar</button>

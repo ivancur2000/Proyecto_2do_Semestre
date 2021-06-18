@@ -62,13 +62,13 @@ $fecha= date('y-m-d-h-m');
 <!-- cabcera -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: #212529;" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="../index.php">YOLITA.SRL</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menú<i class="fas fa-bars ml-1"></i></button>
+        <a class="navbar-brand js-scroll-trigger" href="../index.php">TURISBO</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menú<i class="fas fa-bars ml-1"></i></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ml-auto">
                 <div class="masthead-subheading text-uppercase">
                     <!-- Search form -->
                     <form action="busqueda.php" method="POST" onSubmit="return validarForm(this)">
-                        <input class="form-control" name="busqueda" type="text" placeholder="Zona, tipo de inmueble, edifico" aria-label="Search">  
+                        <input class="form-control" name="busqueda" type="text" placeholder="Departamentos, lugares turísticos, hoteles, comidas" aria-label="Search">  
                 </div>
                         <button type="submit" name="tb_buscar" class="btn btn-primary text-uppercase js-scroll-trigger">Buscar</button>
                     </form>
@@ -133,11 +133,10 @@ $fecha= date('y-m-d-h-m');
     <footer class="footer py-4 fixed-botom" id="footer">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-4 text-lg-left" style="color: #ffff">Derechos de autor © Yolita.SRL 2020</div>
+                <div class="col-lg-4 text-lg-left" style="color: #ffff">Derechos de autor © Manuel Jimenez</div>
                 <div class="col-lg-4 my-3 my-lg-0">
                     <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
                 </div>
-                <div class="col-lg-4 text-lg-right"><a class="mr-3" href="#!">Privacy Policy</a><a href="#!">Terms of Use</a></div>
             </div>
         </div>
     </footer>

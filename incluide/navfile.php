@@ -14,13 +14,13 @@
 </script>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: #212529;" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="index.php">YOLITA.SRL</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menú<i class="fas fa-bars ml-1"></i></button>
+        <a class="navbar-brand js-scroll-trigger" href="index.php">TURISBO</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menú<i class="fas fa-bars ml-1"></i></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ml-auto">
                 <div class="masthead-subheading text-uppercase">
                     <!-- Search form -->
                     <form action="busqueda.php" method="POST" onSubmit="return validarForm(this)">
-                        <input class="form-control" name="busqueda" type="text" placeholder="Zona, tipo de inmueble, edifico" aria-label="Search">  
+                        <input class="form-control" name="busqueda" type="text" placeholder="Departamentos, Lugares Turisticos" aria-label="Search">  
                 </div>
                         <button type="submit" name="tb_buscar" class="btn btn-primary text-uppercase js-scroll-trigger">Buscar</button>
                     </form>

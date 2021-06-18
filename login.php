@@ -50,7 +50,7 @@ if(!empty($_SESSION['active']))
 					//inicio del metodo de logueo
 					//variables de logueo
 					$user = mysqli_real_escape_string($conn, $_POST['tb_us']);
-					$pass = mysqli_real_escape_string($conn, $_POST['tb_pass']);
+					$pass = md5 (mysqli_real_escape_string($conn, $_POST['tb_pass']));
 					//consulta a la base de datos para la validacion del logueo
 					$sql = mysqli_query($conn, "CALL login ('$user', '$pass')");
 					$resultado = mysqli_num_rows($sql);
@@ -101,7 +101,7 @@ if(!empty($_SESSION['active']))
 		</div>
 		<div class="container text-right">	
 			<div class="text-rigth">
-				<a href="index.php" style="color: #ffff;"><h1 class="display-3">Yolita.SRL</h1></a>
+				<a href="index.php" style="color: #ffff;"><h1 class="display-3">TURISBO</h1></a>
 			</div>
 		</div>
 	</div>
